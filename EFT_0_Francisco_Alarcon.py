@@ -36,7 +36,13 @@ def validar_precio(precio):
     return precio > 0
 
 def validar_disponible(disponible):
-    return disponible.lower() in ('s','n')
+    disponible = disponible.strip().lower()
+    if disponible == 's':
+        return True
+    elif disponible == 'n':
+        return False
+    else:
+        return -1
 
 #Validaciones diccionario de inventario
 
@@ -46,3 +52,29 @@ def validar_stock(stock):
 def validar_vendidos(vendidos):
     return vendidos >= 0
 
+def stock_categoria(categoria, productos, inventario):
+    #No retorna valores, mostrar resultado
+    pass
+
+def buscar_precio(precio_min, productos, inventario):
+    pass
+
+def buscar_codigo(codigo, productos):
+    #retorna True/False
+    pass
+
+def actualizar_precio(codigo, nuevo_precio, productos):
+    #retorna True/False
+    pass
+
+def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
+    #retorna True si fue agregado, False si el codigo existe
+    pass
+
+def eliminar_producto(codigo, productos, invetario):
+    #retorna True/false
+    pass
+
+def mostrar_productos(productos, inventario):
+    #print
+    pass
