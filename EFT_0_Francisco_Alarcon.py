@@ -1,3 +1,7 @@
+'''
+Arreglar bug en stock por categoria
+'''
+
 import os
 os.system("cls")
 
@@ -53,8 +57,16 @@ def validar_vendidos(vendidos):
     return vendidos >= 0
 
 def stock_categoria(categoria, productos, inventario):
-    #No retorna valores, mostrar resultado
-    pass
+    total = 0
+    for llave, valor in productos.items():
+        if valor[1].lower() == categoria.lower():
+            total += inventario[llave][0]
+    if valor[1].lower() != categoria.lower():
+        print("No existe esa categoria")
+    elif total == 0:
+        print(f"No hay Stock de {categoria.lower().capitalize()}")
+    elif total > 0:
+        print(f"Stock total de {categoria.lower().capitalize()} = {total}")
 
 def buscar_precio(precio_min, productos, inventario):
     pass
@@ -78,3 +90,30 @@ def eliminar_producto(codigo, productos, invetario):
 def mostrar_productos(productos, inventario):
     #print
     pass
+
+def main():
+    #Productos codigo Key, contiene Nombre, Categoria, Precio y Disponibilidad
+    productos = {
+        "P101": ["Cuaderno", "Papeleria", 2490, True],
+        "P102": ["Lapiz", "Papeleria", 590, False ],
+        "P103": ["Vodka", "Alcohol", 5000, True]
+    }
+    #Inventario codigo key, lista 0 stock y 1 vendidos
+    inventario = {
+        "P101": [0,15],
+        "P102": [0,50],
+        "P103": [1,40]
+    }
+    while True:
+        mostrar_menu()
+        opcion = leer_opcion()
+        if opcion == 1:
+            categoria = input("Ingrese la categoria que desea verificar\n> ")
+            if not validar_categoria(categoria):
+                print("La categoria no puede quedar vacia")
+                return
+            else:
+                stock_categoria(categoria, productos, inventario)
+
+#Inicio programa
+main()
