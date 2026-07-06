@@ -1,7 +1,3 @@
-'''
-Arreglar bug en stock por categoria
-'''
-
 import os
 os.system("cls")
 
@@ -58,15 +54,14 @@ def validar_vendidos(vendidos):
 
 def stock_categoria(categoria, productos, inventario):
     total = 0
-    for llave, valor in productos.items():
-        if valor[1].lower() == categoria.lower():
-            total += inventario[llave][0]
-    if valor[1].lower() != categoria.lower():
-        print("No existe esa categoria")
-    elif total == 0:
-        print(f"No hay Stock de {categoria.lower().capitalize()}")
-    elif total > 0:
-        print(f"Stock total de {categoria.lower().capitalize()} = {total}")
+    for codigo in productos:
+        if productos[codigo][1].lower() == categoria.lower():
+            total += inventario[codigo][0]
+    else:
+        if total == 0:
+            print("No hay stock")
+        else:
+            print(f"Stock disponible de {categoria.lower().capitalize()} = {total}")
 
 def buscar_precio(precio_min, productos, inventario):
     pass
@@ -100,8 +95,8 @@ def main():
     }
     #Inventario codigo key, lista 0 stock y 1 vendidos
     inventario = {
-        "P101": [0,15],
-        "P102": [0,50],
+        "P101": [8,15],
+        "P102": [4,50],
         "P103": [1,40]
     }
     while True:
@@ -111,7 +106,6 @@ def main():
             categoria = input("Ingrese la categoria que desea verificar\n> ")
             if not validar_categoria(categoria):
                 print("La categoria no puede quedar vacia")
-                return
             else:
                 stock_categoria(categoria, productos, inventario)
 
