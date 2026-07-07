@@ -23,33 +23,47 @@ def leer_opcion():
             else:
                 return opcion
         except ValueError:
-            print("Opcion seleccionada debe ser un numero entero")
+            print("ERROR! Debe ingresar un numero entero.")
+
+#Validaciones
 
 def validar_texto(valor):
-    pass
+    return valor.strip() != ""
 
 def leer_entero(mensaje):
-    pass
-
+    while True:
+        try:
+            numero = int(input(mensaje))
+            return numero
+        except ValueError:
+            print("ERROR! Debe ingresar un numero entero.")
 
 def leer_texto_no_vacio(mensaje):
-    pass
+    while True:
+        texto = input(mensaje)
+        if validar_texto:
+            return texto
+        else:
+            print("ERROR! Dato ingresado no puede estar vacio.")
 
 def validar_precio(precio):
-    pass
+    return precio >= 0
 
 def validar_disponible(disponible):
-    pass
+    disponible = disponible.lower()
+    return disponible == "s" or disponible == "n"
 
 def validar_stock(stock):
-    pass
+    return stock >= 0
 
 def validar_vendidos(vendidos):
-    pass
+    return vendidos >= 0
 
 def validar_codigo_nuevo (codigo, productos, inventario):
-    pass
+    codigo = codigo.lower()
+    return codigo != "" and codigo not in productos and codigo not in inventario
 
+#---------------------------------------------------------------------------------
 
 def stock_categoria(categoria, productos, inventario):
     pass
