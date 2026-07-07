@@ -25,65 +25,65 @@ def leer_opcion():
         except ValueError:
             print("Opcion seleccionada debe ser un numero entero")
 
-#Validaciones diccionario de productos
-def validar_nombre(nombre):
-    return nombre.strip() != ""
+def validar_texto(valor):
+    pass
 
-def validar_categoria(categoria):
-    return categoria.strip() != ""
+def leer_entero(mensaje):
+    pass
+
+
+def leer_texto_no_vacio(mensaje):
+    pass
 
 def validar_precio(precio):
-    return precio > 0
+    pass
 
 def validar_disponible(disponible):
-    disponible = disponible.strip().lower()
-    if disponible == 's':
-        return True
-    elif disponible == 'n':
-        return False
-    else:
-        return -1
-
-#Validaciones diccionario de inventario
+    pass
 
 def validar_stock(stock):
-    return stock >= 0
+    pass
 
 def validar_vendidos(vendidos):
-    return vendidos >= 0
+    pass
+
+def validar_codigo_nuevo (codigo, productos, inventario):
+    pass
+
 
 def stock_categoria(categoria, productos, inventario):
-    total = 0
-    for codigo in productos:
-        if productos[codigo][1].lower() == categoria.lower():
-            total += inventario[codigo][0]
-    else:
-        if total == 0:
-            print("No hay stock")
-        else:
-            print(f"Stock disponible de {categoria.lower().capitalize()} = {total}")
-
-def buscar_precio(precio_min, productos, inventario):
     pass
 
-def buscar_codigo(codigo, productos):
-    #retorna True/False
+def buscar_precio(precio_min, precio_max, productos, inventario):
     pass
 
-def actualizar_precio(codigo, nuevo_precio, productos):
-    #retorna True/False
+def buscar_codigo(codigo, productos, inventario):
+    pass
+
+def actualizar_precio(codigo, nuevo_precio, productos, inventario):
     pass
 
 def agregar_producto(codigo, nombre, categoria, precio, disponible, stock, vendidos, productos, inventario):
-    #retorna True si fue agregado, False si el codigo existe
     pass
 
-def eliminar_producto(codigo, productos, invetario):
-    #retorna True/false
+def eliminar_producto(codigo, productos, inventario):
+    pass
+
+def ejecutar_stock_categoria(productos, inventario):
+    pass
+def ejecutar_busqueda_precio(productos, inventario):
+    pass
+
+def ejecutar_actualizar_precio(productos, inventario):
+    pass
+
+def ejecutar_agregar_producto(productos, inventario):
+    pass
+
+def ejecutar_eliminar_producto(productos, inventario):
     pass
 
 def mostrar_productos(productos, inventario):
-    #print
     pass
 
 def main():
@@ -102,12 +102,22 @@ def main():
     while True:
         mostrar_menu()
         opcion = leer_opcion()
+        
         if opcion == 1:
-            categoria = input("Ingrese la categoria que desea verificar\n> ")
-            if not validar_categoria(categoria):
-                print("La categoria no puede quedar vacia")
-            else:
-                stock_categoria(categoria, productos, inventario)
+            ejecutar_stock_categoria(productos, inventario)
+        elif opcion == 2:
+            ejecutar_busqueda_precio(productos, inventario)
+        elif opcion == 3:
+            ejecutar_actualizar_precio(productos, inventario)
+        elif opcion == 4:
+            ejecutar_agregar_producto(productos, inventario)
+        elif opcion == 5:
+            ejecutar_eliminar_producto(productos, inventario)
+        elif opcion == 6:
+            mostrar_productos(productos, inventario)
+        else:
+            print("Saliendo del programa")
+            break
 
 #Inicio programa
 main()
